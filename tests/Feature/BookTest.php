@@ -74,6 +74,41 @@ final class BookTest extends TestCase
             ]);
     }
 
+    #[DataProvider('valid_data_provider')]
+    public function test_can_update_an_existing_book_with_valid_attributes(string $title, string $authorName, string $publishedAt, ?string $annotation): void
+    {
+        $author = Author::factory()->create(['name' => $authorName]);
+        $book = Book::factory()->create();
+
+        $this->patchJson(route('books.update', $book), [
+            'title' => $title,
+            'author_id' => $author->getKey(),
+            'published_at' => $publishedAt,
+            'annotation' => $annotation,
+        ])
+            ->assertOk()
+            ->assertJsonStructure([
+                'data' => [
+                    'title',
+                    'author' => [
+                        'name',
+                    ],
+                    'published_at',
+                    'annotation',
+                ],
+            ])
+            ->assertJson([
+                'data' => [
+                    'title' => $title,
+                    'author' => [
+                        'name' => $authorName,
+                    ],
+                    'published_at' => $publishedAt,
+                    'annotation' => $annotation,
+                ],
+            ]);
+    }
+
     /**
      * @return Generator<string,array{string,string,string,string}>
      */
