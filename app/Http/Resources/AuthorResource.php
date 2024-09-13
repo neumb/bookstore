@@ -19,6 +19,8 @@ final class AuthorResource extends JsonResource
             'id' => $this->getKey(),
             'name' => $this->name,
             'books_count' => $this->books_count, // TODO: impl
+            'information' => $this->information,
+            'birthday' => $this->birthday,
         ];
     }
 }

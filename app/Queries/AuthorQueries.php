@@ -16,4 +16,3 @@ final class AuthorQueries
         return Author::query();
     }
 }
-

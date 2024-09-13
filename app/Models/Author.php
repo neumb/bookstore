@@ -17,4 +17,10 @@ final class Author extends Model
     protected $casts = [
         'birthday' => 'datetime',
     ];
+
+    protected $fillable = [
+        'name',
+        'information',
+        'birthday',
+    ];
 }
