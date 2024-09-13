@@ -39,3 +39,75 @@ The bookstore service. The service provides API methods for fetching data in JSO
   - Add the table of contents and text of chapters in the method for fetching a single book
 - Req 3
   - Write tests for the API methods
+
+## Starting the Application
+```sh
+chmod 777 -R storage/framework
+chmod 777 -R storage/logs
+```
+
+```sh
+docker compose up --build -d
+```
+
+```sh
+podman compose exec app php artisan optimize:clear
+podman compose exec app php artisan migrate --force
+podman compose exec app php artisan optimize
+podman compose exec app php artisan db:seed --force
+```
+
+## Endpoints
+### Paginate Authors
+`[GET] api/authors`
+
+### Show an Author
+`[GET] api/authors/:id`
+
+### Store a new Author
+```
+[POST] api/authors
+{
+  "name": "Fyodor Dostoevsky",
+  "information": "Born in Moscow in 1821...",
+  "birthday" => "11-11-1821"
+}
+```
+
+### Update an Author
+```
+[PATCH] api/authors/:id
+{
+  "name": "Fyodor Dostoevsky",
+  "information": "Born in Moscow in 1821...",
+  "birthday" => "11-11-1821"
+}
+```
+
+### Paginate Books
+`[GET] api/books`
+
+### Show a Book
+`[GET] api/books/:id`
+
+### Store a new Book
+```
+[POST] api/books
+{
+  "title": "1984",
+  "author_id": 10,
+  "published_at": "08-06-1949",
+  "annotation": "A dystopian novel that explores the dangers...",
+}
+```
+
+### Update a Book
+```
+[PATCH] api/books/:id
+{
+  "title": "1984",
+  "author_id": 10,
+  "published_at": "08-06-1949",
+  "annotation": "A dystopian novel that explores the dangers...",
+}
+```
