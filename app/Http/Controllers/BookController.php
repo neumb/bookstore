@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\BookResource;
 use App\Queries\BookQueries;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 final class BookController extends Controller
 {
-    public function index(BookQueries $queries): LengthAwarePaginator
+    public function index(BookQueries $queries): AnonymousResourceCollection
     {
-        return $queries->paginateQuery()->paginate();
+        return BookResource::collection($queries->paginateQuery()->paginate());
     }
 }
