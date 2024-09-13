@@ -27,9 +27,9 @@ final class AuthorController extends Controller
         return AuthorResource::make($author);
     }
 
-    public function show(Author $author): void
+    public function show(Author $author): AuthorResource
     {
-        //
+        return AuthorResource::make($author);
     }
 
     public function update(UpdateAuthorRequest $request, Author $author): AuthorResource
