@@ -21,6 +21,7 @@ final class AuthorResource extends JsonResource
             'books_count' => $this->books_count, // TODO: impl
             'information' => $this->information,
             'birthday' => $this->birthday?->format('d-m-Y'),
+            'books' => $this->whenLoaded('books'),
         ];
     }
 }

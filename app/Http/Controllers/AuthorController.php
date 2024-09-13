@@ -29,7 +29,7 @@ final class AuthorController extends Controller
 
     public function show(Author $author): AuthorResource
     {
-        return AuthorResource::make($author);
+        return tap(AuthorResource::make($author))->load('books');
     }
 
     public function update(UpdateAuthorRequest $request, Author $author): AuthorResource
@@ -40,10 +40,5 @@ final class AuthorController extends Controller
         });
 
         return AuthorResource::make($author);
-    }
-
-    public function destroy(Author $author): void
-    {
-        //
     }
 }
