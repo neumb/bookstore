@@ -51,10 +51,10 @@ docker compose up --build -d
 ```
 
 ```sh
-podman compose exec app php artisan optimize:clear
-podman compose exec app php artisan migrate --force
-podman compose exec app php artisan optimize
-podman compose exec app php artisan db:seed --force
+docker compose exec app php artisan optimize:clear
+docker compose exec app php artisan migrate --force
+docker compose exec app php artisan optimize
+docker compose exec app php artisan db:seed --force
 ```
 
 ## Endpoints
