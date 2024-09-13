@@ -12,7 +12,8 @@ final class AuthorQueries
      */
     public function paginateQuery(): Builder
     {
-        // TODO: sort by books count
-        return Author::query();
+        return Author::query()
+            ->withCount('books')
+            ->orderBy('books_count');
     }
 }

@@ -18,7 +18,7 @@ final class AuthorResource extends JsonResource
         return [
             'id' => $this->getKey(),
             'name' => $this->name,
-            'books_count' => $this->books_count, // TODO: impl
+            'books_count' => $this->books_count,
             'information' => $this->information,
             'birthday' => $this->birthday?->format('d-m-Y'),
             'books' => $this->whenLoaded('books'),

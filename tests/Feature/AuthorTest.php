@@ -26,9 +26,14 @@ final class AuthorTest extends TestCase
                         'name',
                         'information',
                         'birthday',
+                        'books_count',
                     ],
                 ],
             ]);
+
+        foreach ($response->json('data') as $item) {
+            $this->assertTrue(is_int($item['books_count']));
+        }
     }
 
     #[DataProvider('valid_data_provider')]
@@ -98,6 +103,14 @@ final class AuthorTest extends TestCase
                     'information',
                     'birthday',
                     'books_count',
+                    'books' => [
+                        '*' => [
+                            'id',
+                            'title',
+                            'annotation',
+                            'published_at',
+                        ],
+                    ],
                 ],
             ]);
     }
