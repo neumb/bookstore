@@ -37,7 +37,13 @@ final class BookTest extends TestCase
                         'updated_at',
                     ],
                 ],
-            ]);
+            ])
+            ->assertJson([
+                'meta' => [
+                    'per_page' => 10,
+                ]
+            ])
+            ->assertJsonCount(10, 'data');
     }
 
     #[DataProvider('valid_data_provider')]

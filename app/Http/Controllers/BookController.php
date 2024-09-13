@@ -13,7 +13,10 @@ final class BookController extends Controller
 {
     public function index(BookQueries $queries): AnonymousResourceCollection
     {
-        return BookResource::collection($queries->paginateQuery()->paginate());
+        return BookResource::collection($queries->paginateQuery()->paginate(
+            // TODO: move to a config file
+            perPage: 10
+        ));
     }
 
     public function store(StoreBookRequest $request): BookResource
