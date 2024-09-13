@@ -16,7 +16,7 @@ final class AuthorTest extends TestCase
     {
         Author::factory()->count(100)->create();
 
-        $response = $this->get('/api/authors')
+        $response = $this->get(route('authors.paginate'))
             //->dump()
             ->assertStatus(200)
             ->assertJsonStructure([
@@ -34,12 +34,33 @@ final class AuthorTest extends TestCase
     #[DataProvider('valid_data_provider')]
     public function test_can_create_a_new_author_with_valid_attributes(string $name, ?string $info, ?\DateTimeInterface $birthday): void
     {
-        $this->postJson('/api/authors', [
+        $this->postJson(route('authors.store'), [
             'name' => $name,
             'information' => $info,
             'birthday' => $birthday,
         ])
             ->assertCreated()
+            ->assertJsonStructure([
+                'data' => [
+                    'id',
+                    'name',
+                    'information',
+                    'birthday',
+                ],
+            ]);
+    }
+
+    #[DataProvider('valid_data_provider')]
+    public function test_can_update_an_existing_author_with_valid_attributes(string $name, ?string $info, ?\DateTimeInterface $birthday): void
+    {
+        $author = Author::factory()->create();
+
+        $this->patchJson(route('authors.update', $author), [
+            'name' => $name,
+            'information' => $info,
+            'birthday' => $birthday,
+        ])
+            ->assertOk()
             ->assertJsonStructure([
                 'data' => [
                     'id',
