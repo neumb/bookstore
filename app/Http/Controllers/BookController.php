@@ -35,4 +35,9 @@ final class BookController extends Controller
 
         return tap(BookResource::make($book))->load('author');
     }
+
+    public function show(Book $book): BookResource
+    {
+        return tap(BookResource::make($book))->load('author');
+    }
 }

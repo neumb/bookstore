@@ -109,6 +109,24 @@ final class BookTest extends TestCase
             ]);
     }
 
+    public function test_can_view_an_existing_book(): void
+    {
+        $book = Book::factory()->create();
+
+        $this->getJson(route('books.show', $book))
+            ->assertOk()
+            ->assertJsonStructure([
+                'data' => [
+                    'title',
+                    'author' => [
+                        'name',
+                    ],
+                    'published_at',
+                    'annotation',
+                ],
+            ]);
+    }
+
     /**
      * @return Generator<string,array{string,string,string,string}>
      */

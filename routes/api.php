@@ -10,5 +10,6 @@ Route::post('/authors', [AuthorController::class, 'store'])->name('authors.store
 Route::patch('/authors/{author}', [AuthorController::class, 'update'])->name('authors.update');
 
 Route::get('/books', [BookController::class, 'index'])->name('books.paginate');
+Route::get('/books/{book}', [BookController::class, 'show'])->name('books.show');
 Route::post('/books', [BookController::class, 'store'])->name('books.store');
 Route::patch('/books/{book}', [BookController::class, 'update'])->name('books.update');
