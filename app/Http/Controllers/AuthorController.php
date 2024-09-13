@@ -7,13 +7,13 @@ use App\Http\Requests\UpdateAuthorRequest;
 use App\Http\Resources\AuthorResource;
 use App\Models\Author;
 use App\Queries\AuthorQueries;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 final class AuthorController extends Controller
 {
-    public function index(AuthorQueries $queries): LengthAwarePaginator
+    public function index(AuthorQueries $queries): AnonymousResourceCollection
     {
-        return $queries->paginateQuery()->paginate();
+        return AuthorResource::collection($queries->paginateQuery()->paginate());
     }
 
     public function store(StoreAuthorRequest $request): AuthorResource
