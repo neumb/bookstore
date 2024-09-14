@@ -130,6 +130,13 @@ final class BookTest extends TestCase
                     'author' => [
                         'name',
                     ],
+                    'chapters' => [
+                        '*' => [
+                            'id',
+                            'title',
+                            'index',
+                        ],
+                    ],
                     'published_at',
                     'chars_count',
                     'annotation',

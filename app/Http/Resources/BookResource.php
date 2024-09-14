@@ -22,6 +22,7 @@ final class BookResource extends JsonResource
             'author' => $this->whenLoaded('author'),
             'published_at' => $this->published_at?->format('d-m-Y'),
             'chars_count' => $this->chars_count,
+            'chapters' => ChapterResource::collection($this->whenLoaded('chapters')),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
