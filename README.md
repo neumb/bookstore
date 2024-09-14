@@ -42,8 +42,8 @@ The bookstore service. The service provides API methods for fetching data in JSO
 
 ## Starting the Application
 ```sh
-chmod 777 -R storage/framework
-chmod 777 -R storage/logs
+chmod o+w -R storage/framework
+chmod o+w -R storage/logs
 ```
 
 ```sh
