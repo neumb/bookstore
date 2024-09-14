@@ -102,7 +102,7 @@ docker compose exec app php artisan db:seed --force
   "title": "1984",
   "author_id": 10,
   "published_at": "08-06-1949",
-  "annotation": "A dystopian novel that explores the dangers...",
+  "annotation": "A dystopian novel that explores the dangers..."
 }
 ```
 
@@ -113,6 +113,37 @@ docker compose exec app php artisan db:seed --force
   "title": "1984",
   "author_id": 10,
   "published_at": "08-06-1949",
-  "annotation": "A dystopian novel that explores the dangers...",
+  "annotation": "A dystopian novel that explores the dangers..."
 }
+```
+
+### List Chapters of a Book
+`[GET] api/books/:id/chapters`
+
+### Show a Chapter
+`[GET] api/books/:id/chapters/:chapter_id`
+
+### Store a new Chapter
+```
+[POST] api/books/:id/chapters
+{
+  "title": "Part One",
+  "content": "Introduces the protagonist, Winston Smith, and the oppressive world of Oceania.",
+  "index": 0
+}
+```
+
+### Update a Chapter
+```
+[PATCH] api/books/:id/chapters/:chapter_id
+{
+  "title": "Part Two",
+  "content": "Focuses on Winston's rebellion against the Party and his relationship with Julia.",
+  "index": 1
+}
+```
+
+### Delete a Chapter
+```
+[DELETE] api/books/:id/chapters/:chapter_id
 ```
