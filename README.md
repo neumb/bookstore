@@ -33,7 +33,7 @@ The bookstore service. The service provides API methods for fetching data in JSO
 ## Added Complexity:
 - Req 1
   - [x] Implement functionality for the table of contents
-  - [ ] Add counting of the number of characters in the text of all chapters of a book, update it after adding a new one chapter or updating it
+  - [x] Implement counting of the number of characters in the text of all chapters of a book, update it after adding a new one chapter or updating it
 - Req 2
   - [ ] Add information about the number of characters in the method for fetching the listing of books
   - [ ] Add the table of contents and text of chapters in the method for fetching a single book

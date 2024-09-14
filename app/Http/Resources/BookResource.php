@@ -21,6 +21,7 @@ final class BookResource extends JsonResource
             'annotation' => $this->annotation,
             'author' => $this->whenLoaded('author'),
             'published_at' => $this->published_at?->format('d-m-Y'),
+            'chars_count' => $this->chars_count,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
