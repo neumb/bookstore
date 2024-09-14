@@ -31,4 +31,9 @@ final class Book extends Model
     {
         return $this->belongsTo(Author::class);
     }
+
+    public function chapters(): HasMany
+    {
+        return $this->hasMany(Chapter::class);
+    }
 }

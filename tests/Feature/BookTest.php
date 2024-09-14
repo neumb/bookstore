@@ -41,7 +41,7 @@ final class BookTest extends TestCase
             ->assertJson([
                 'meta' => [
                     'per_page' => 10,
-                ]
+                ],
             ])
             ->assertJsonCount(10, 'data');
     }
