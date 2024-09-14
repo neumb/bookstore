@@ -33,6 +33,7 @@ final class BookTest extends TestCase
                         ],
                         'annotation',
                         'published_at',
+                        'chars_count',
                         'created_at',
                         'updated_at',
                     ],
@@ -65,6 +66,7 @@ final class BookTest extends TestCase
                         'name',
                     ],
                     'published_at',
+                    'chars_count',
                     'annotation',
                 ],
             ])
@@ -100,6 +102,7 @@ final class BookTest extends TestCase
                         'name',
                     ],
                     'published_at',
+                    'chars_count',
                     'annotation',
                 ],
             ])
@@ -128,6 +131,7 @@ final class BookTest extends TestCase
                         'name',
                     ],
                     'published_at',
+                    'chars_count',
                     'annotation',
                 ],
             ]);
