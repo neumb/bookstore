@@ -7,36 +7,32 @@ use App\Http\Requests\UpdateBookRequest;
 use App\Http\Resources\BookResource;
 use App\Models\Book;
 use App\Queries\BookQueries;
+use App\Services\BookService;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 final class BookController extends Controller
 {
     public function index(BookQueries $queries): AnonymousResourceCollection
     {
-        return BookResource::collection($queries->paginateQuery()->paginate(
-            // TODO: move to a config file
-            perPage: 10
-        ));
+        return BookResource::collection(
+            $queries->paginateQuery()->paginate(
+                perPage: 10 // TODO: move to a config file
+            )
+        );
     }
 
-    public function store(StoreBookRequest $request): BookResource
+    public function store(StoreBookRequest $request, BookService $service): BookResource
     {
-        $book = tap(new Book, function (Book $book) use ($request): void {
-            $book->fill($request->safe()->all());
-            $book->save();
-        });
-
-        return tap(BookResource::make($book))->load('author');
+        return tap(BookResource::make(
+            $service->createBook($request->resolveData()))
+        )->load('author');
     }
 
-    public function update(UpdateBookRequest $request, Book $book): BookResource
+    public function update(UpdateBookRequest $request, BookService $service, Book $book): BookResource
     {
-        $book = tap($book, function (Book $book) use ($request): void {
-            $book->fill($request->safe()->all());
-            $book->save();
-        });
-
-        return tap(BookResource::make($book))->load('author');
+        return tap(BookResource::make(
+            $service->updateBook($book, $request->resolveData()))
+        )->load('author');
     }
 
     public function show(Book $book): BookResource

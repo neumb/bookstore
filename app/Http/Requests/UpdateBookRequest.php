@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\DataTransferObjects\UpdateBookData;
 use App\Models\Author;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -19,5 +20,10 @@ final class UpdateBookRequest extends FormRequest
             'annotation' => ['nullable', 'string', 'max:1000'],
             'published_at' => ['required', 'date_format:d-m-Y'],
         ];
+    }
+
+    public function resolveData(): UpdateBookData
+    {
+        return new UpdateBookData(...$this->safe()->all());
     }
 }
